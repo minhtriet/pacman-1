@@ -1,0 +1,19 @@
+{
+  "name": "pacman-1",
+  "version": "1.0.0",
+  "repository": "git@github.com:minhtriet/pacman-1.git",
+  "author": "minhtriet <mtriet.chau@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "webpack-dev-server": "^3.10.1"
+  },
+  "scripts": {
+    "build": "webpack --config webpack.config.js",
+    "start": "webpack-dev-server --mode development"
+  }
+}
