@@ -6,6 +6,7 @@
  * fix what happens when a ghost is eaten (should go back to base)
  * do proper ghost mechanics (blinky/wimpy etc)
  */
+import {logEnv} from './ml.js';
 
 var NONE = 4,
     UP = 3,
