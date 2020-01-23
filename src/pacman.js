@@ -284,7 +284,7 @@ Pacman.User = function (game, map) {
         eaten = null,
         due = null,
         lives = null,
-        score = 5,
+        reward = 5,
         keyMap = {};
 
     keyMap[KEY.ARROW_LEFT] = LEFT;
@@ -293,14 +293,14 @@ Pacman.User = function (game, map) {
     keyMap[KEY.ARROW_DOWN] = DOWN;
 
     function addScore(nScore) {
-        score += nScore;
-        if (score >= 10000 && score - nScore < 10000) {
+        reward += nScore;
+        if (reward >= 10000 && reward - nScore < 10000) {
             lives += 1;
         }
     }
 
     function theScore() {
-        return score;
+        return reward;
     }
 
     function loseLife() {
@@ -312,7 +312,7 @@ Pacman.User = function (game, map) {
     }
 
     function initUser() {
-        score = 0;
+        reward = 0;
         lives = 3;
         newLevel();
     }
@@ -389,10 +389,11 @@ Pacman.User = function (game, map) {
 
     function move() {
 
-        var npos = null,
+        let npos = null,
             nextWhole = null,
             oldPosition = position,
-            block = null;
+            block = null
+            reward = -1;   // every move costs
 
         if (due !== direction) {
             npos = getNewCoord(due, position);
@@ -433,9 +434,9 @@ Pacman.User = function (game, map) {
 
         if ((isMidSquare(position.y) || isMidSquare(position.x)) &&
             block === Pacman.BISCUIT || block === Pacman.PILL) {
-
+            reward = (block === Pacman.BISCUIT) ? 10 : 50;
             map.setBlock(nextWhole, Pacman.EMPTY);
-            addScore((block === Pacman.BISCUIT) ? 10 : 50);
+            addScore(reward);
             eaten += 1;
 
             if (eaten === 182) {
@@ -449,7 +450,8 @@ Pacman.User = function (game, map) {
 
         return {
             "new": position,
-            "old": oldPosition
+            "old": oldPosition,
+            "reward": reward
         };
     }
 
