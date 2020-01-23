@@ -299,7 +299,7 @@ Pacman.User = function (game, map) {
         }
     }
 
-    function theScore() {
+    function getScore() {
         return score;
     }
 
@@ -392,7 +392,7 @@ Pacman.User = function (game, map) {
         let npos = null,
             nextWhole = null,
             oldPosition = position,
-            block = null
+            block = null,
             reward = -1;   // every move costs
 
         if (due !== direction) {
@@ -523,7 +523,7 @@ Pacman.User = function (game, map) {
         "getLives": getLives,
         "score": score,
         "addScore": addScore,
-        "theScore": theScore,
+        "theScore": getScore,
         "keyDown": keyDown,
         "move": move,
         "newLevel": newLevel,
@@ -900,7 +900,6 @@ var PACMAN = (function () {
 
         ctx.fillStyle = !soundDisabled() ? "#00FF00" : "#FF0000";
         ctx.font = "bold 16px sans-serif";
-        //ctx.fillText("♪", 10, textBase);
         ctx.fillText("s", 10, textBase);
 
         ctx.fillStyle = "#FFFF00";
