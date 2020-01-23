@@ -923,6 +923,7 @@ var PACMAN = (function () {
             ghostPos.push(ghosts[i].move());
         }
         u = user.move();
+        logEnv(u.reward, map.map, ghosts, ghostPos, u);
 
         for (i = 0, len = ghosts.length; i < len; i += 1) {
             redrawBlock(ghostPos[i].old);
