@@ -284,7 +284,7 @@ Pacman.User = function (game, map) {
         eaten = null,
         due = null,
         lives = null,
-        reward = 5,
+        score = 5,
         keyMap = {};
 
     keyMap[KEY.ARROW_LEFT] = LEFT;
@@ -293,14 +293,14 @@ Pacman.User = function (game, map) {
     keyMap[KEY.ARROW_DOWN] = DOWN;
 
     function addScore(nScore) {
-        reward += nScore;
-        if (reward >= 10000 && reward - nScore < 10000) {
+        score += nScore;
+        if (score >= 10000 && score - nScore < 10000) {
             lives += 1;
         }
     }
 
     function theScore() {
-        return reward;
+        return score;
     }
 
     function loseLife() {
@@ -312,7 +312,7 @@ Pacman.User = function (game, map) {
     }
 
     function initUser() {
-        reward = 0;
+        score = 0;
         lives = 3;
         newLevel();
     }
