@@ -676,6 +676,7 @@ Pacman.Map = function (size) {
 
     return {
         "draw": draw,
+        "map": map,
         "drawBlock": drawBlock,
         "drawPills": drawPills,
         "block": block,
@@ -941,6 +942,8 @@ var PACMAN = (function () {
                     ghosts[i].eat();
                     eatenCount += 1;
                     nScore = eatenCount * 50;
+                    logEnv(nScore, map.map, ghosts, ghostPos, u);
+
                     drawScore(nScore, ghostPos[i]);
                     user.addScore(nScore);
                     setState(EATEN_PAUSE);
@@ -948,6 +951,8 @@ var PACMAN = (function () {
                 } else if (ghosts[i].isDangerous()) {
                     audio.play("die");
                     setState(DYING);
+                    logEnv(-1000, map.map, ghosts, ghostPos, u);
+
                     timerStart = tick;
                 }
             }
